@@ -2,6 +2,7 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import NextButton from "../components/ui/NextButton";
+import ProgressBar from "../components/ui/ProgressBar";
 
 export default function Onboarding2() {
   const router = useRouter();
@@ -10,9 +11,7 @@ export default function Onboarding2() {
     <View style={styles.container}>
       {/* Progress Bar & Skip */}
       <View style={styles.topRow}>
-        <View style={styles.progressBarBg}>
-          <View style={styles.progressBarFill} />
-        </View>
+        <ProgressBar progress={0.5} style={{ marginRight: 16 }} />
         <TouchableOpacity onPress={() => router.replace("/welcome")}>
           <Text style={styles.skip}>Skip</Text>
         </TouchableOpacity>
@@ -28,7 +27,12 @@ export default function Onboarding2() {
 
       {/* Illustration */}
       <View style={styles.illustrationContainer}>
-        {/* Ganti source dengan ilustrasi robot Anda jika ada */}
+        {/* Heart Icon */}
+        <Image source={require("../assets/images/heart-icon.png")} style={styles.heartIcon} resizeMode="contain" />
+        {/* Green Icon */}
+        <Image source={require("../assets/images/green-icon.png")} style={styles.greenIcon} resizeMode="contain" />
+        <Image source={require("../assets/images/robot-blob.png")} style={styles.blob} resizeMode="contain" />
+        {/* Ilustrasi robot di tengah */}
         <Image source={require("../assets/images/robot-illustration.png")} style={styles.illustration} resizeMode="contain" />
       </View>
 
@@ -41,7 +45,7 @@ export default function Onboarding2() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#8800cc",
+    backgroundColor: "#8300BA",
     paddingTop: 60,
     paddingHorizontal: 24,
   },
@@ -51,25 +55,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 24,
   },
-  progressBarBg: {
-    flex: 1,
-    height: 8,
-    backgroundColor: "#a259d9",
-    borderRadius: 4,
-    marginRight: 16,
-    overflow: "hidden",
-  },
-  progressBarFill: {
-    width: "50%",
-    height: 8,
-    backgroundColor: "#FFD233",
-    borderRadius: 4,
-  },
   skip: {
     color: "#fff",
     fontSize: 16,
     fontFamily: "PlusJakartaSans",
-    fontWeight: "400",
+    fontWeight: "500",
+    lineHeight: 32,
+    letterSpacing: 0,
+    textAlign: "center",
+    marginBottom: 4,
   },
   textContainer: {
     marginTop: 16,
@@ -77,10 +71,11 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#fff",
-    fontSize: 32,
+    fontSize: 36,
     fontFamily: "PlusJakartaSans",
     fontWeight: "700",
     lineHeight: 40,
+    letterSpacing: 0,
     marginBottom: 8,
   },
   highlight: {
@@ -91,6 +86,9 @@ const styles = StyleSheet.create({
   desc: {
     color: "#fff",
     fontSize: 16,
+    fontWeight: "500",
+    lineHeight: 24,
+    letterSpacing: 0,
     fontFamily: "PlusJakartaSans",
     marginTop: 8,
     marginBottom: 8,
@@ -102,7 +100,34 @@ const styles = StyleSheet.create({
   },
   illustration: {
     width: "100%",
-    height: 280,
-    marginBottom: 16,
+    height: "100%",
+    marginTop: 80,
+    marginLeft: -100,
+    zIndex: 1,
+  },
+  blob: {
+    position: "absolute",
+    width: 500.66,
+    height: 560,
+    marginTop: 90,
+    marginLeft: -10,
+    // transform: [{ rotate: "-180deg" }],
+    zIndex: 0,
+  },
+  heartIcon: {
+    position: "absolute",
+    top: 180,
+    left: 260,
+    width: 77.1,
+    height: 64.2,
+    zIndex: 2,
+  },
+  greenIcon: {
+    position: "absolute",
+    top: 50,
+    left: 210,
+    width: 77.1,
+    height: 64.2,
+    zIndex: 2,
   },
 });

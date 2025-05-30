@@ -4,7 +4,7 @@ import { Slot } from "expo-router";
 export default function RootLayout() {
   const [loaded] = useFonts({
     // SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-    PlusJakartaSans: require("../assets/fonts/PlusJakartaSans-Bold.ttf"),
+    PlusJakartaSans: require("../assets/fonts/PlusJakartaSans-Regular.ttf"),
   });
 
   if (!loaded) {

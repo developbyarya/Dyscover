@@ -2,6 +2,7 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import NextButton from "../components/ui/NextButton";
+import ProgressBar from "../components/ui/ProgressBar";
 
 export default function Onboarding1() {
   const router = useRouter();
@@ -10,9 +11,7 @@ export default function Onboarding1() {
     <View style={styles.container}>
       {/* Progress Bar & Skip */}
       <View style={styles.topRow}>
-        <View style={styles.progressBarBg}>
-          <View style={styles.progressBarFill} />
-        </View>
+        <ProgressBar progress={0.25} style={{ marginRight: 16 }} />
         <TouchableOpacity onPress={() => router.replace("/welcome")}>
           <Text style={styles.skip}>Skip</Text>
         </TouchableOpacity>
@@ -29,7 +28,9 @@ export default function Onboarding1() {
 
       {/* Illustration */}
       <View style={styles.illustrationContainer}>
-        {/* Ganti source dengan ilustrasi dokter Anda jika ada */}
+        {/* Doctor Blob di belakang */}
+        <Image source={require("../assets/images/doctor-blob.png")} style={styles.blob} resizeMode="contain" />
+        {/* Ilustrasi dokter di depan */}
         <Image source={require("../assets/images/doctor-illustration.png")} style={styles.illustration} resizeMode="contain" />
       </View>
 
@@ -42,7 +43,7 @@ export default function Onboarding1() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#8800cc",
+    backgroundColor: "#8300BA",
     paddingTop: 60,
     paddingHorizontal: 24,
   },
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
   },
   progressBarBg: {
     flex: 1,
+    width: 191,
     height: 8,
     backgroundColor: "#a259d9",
     borderRadius: 4,
@@ -70,7 +72,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontFamily: "PlusJakartaSans",
-    fontWeight: "400",
+    fontWeight: "500",
+    lineHeight: 32,
+    letterSpacing: 0,
+    textAlign: "center",
+    marginBottom: 4,
   },
   textContainer: {
     marginTop: 16,
@@ -78,11 +84,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#fff",
-    fontSize: 32,
+    fontSize: 36,
     fontFamily: "PlusJakartaSans",
     fontWeight: "700",
     lineHeight: 40,
+    letterSpacing: 0,
     marginBottom: 8,
+    width: 370,
+    height: 88,
   },
   highlight: {
     color: "#FFD233",
@@ -92,6 +101,9 @@ const styles = StyleSheet.create({
   desc: {
     color: "#fff",
     fontSize: 16,
+    fontWeight: "500",
+    lineHeight: 24,
+    letterSpacing: 0,
     fontFamily: "PlusJakartaSans",
     marginTop: 8,
     marginBottom: 8,
@@ -101,9 +113,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  blob: {
+    position: "absolute",
+    width: 400.66,
+    height: 600,
+    marginTop: 80,
+    marginLeft: -30,
+    // transform: [{ rotate: "-180deg" }],
+    zIndex: 0,
+  },
   illustration: {
-    width: "100%",
-    height: 280,
-    marginBottom: 16,
+    width: 500.66,
+    height: 400,
+    marginTop: 50,
+    marginLeft: -140,
+    zIndex: 1,
   },
 });

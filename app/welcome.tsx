@@ -25,7 +25,7 @@ export default function WelcomeScreen() {
           style={styles.loginLink}
           onPress={() => {
             // Ganti '/login' dengan halaman login Anda
-            router.replace("/login");
+            router.replace("/screening-instruction");
           }}>
           Masuk
         </Text>

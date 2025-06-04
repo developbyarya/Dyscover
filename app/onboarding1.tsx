@@ -9,7 +9,6 @@ export default function Onboarding1() {
 
   return (
     <View style={styles.container}>
-      {/* Progress Bar & Skip */}
       <View style={styles.topRow}>
         <ProgressBar progress={0.25} style={{ marginRight: 16 }} />
         <TouchableOpacity onPress={() => router.replace("/welcome")}>
@@ -17,7 +16,6 @@ export default function Onboarding1() {
         </TouchableOpacity>
       </View>
 
-      {/* Title & Description */}
       <View style={styles.textContainer}>
         <Text style={styles.title}>
           Deteksi Disleksia{"\n"}
@@ -26,15 +24,11 @@ export default function Onboarding1() {
         <Text style={styles.desc}>Kenali risiko disleksia sejak awal melalui skrining cepat dan akurat.</Text>
       </View>
 
-      {/* Illustration */}
       <View style={styles.illustrationContainer}>
-        {/* Doctor Blob di belakang */}
         <Image source={require("../assets/images/doctor-blob.png")} style={styles.blob} resizeMode="contain" />
-        {/* Ilustrasi dokter di depan */}
         <Image source={require("../assets/images/doctor-illustration.png")} style={styles.illustration} resizeMode="contain" />
       </View>
 
-      {/* Next Button */}
       <NextButton onPress={() => router.replace("/onboarding2")} />
     </View>
   );

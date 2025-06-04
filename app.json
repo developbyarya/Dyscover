@@ -17,7 +17,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.Dyscover"
+      "package": "com.Ambatuwin.Dyscover"
     },
     "web": {
       "bundler": "metro",
@@ -33,6 +33,15 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-font",
+      {
+        "fonts": [
+          "./assets/fonts/Montserrat.ttf",
+            "./assets/fonts/Montserrat-Italic.ttf"
+          ]
         }
       ]
     ],

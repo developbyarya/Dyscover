@@ -1,5 +1,16 @@
-import { Stack } from "expo-router";
+import { useFonts } from "expo-font";
+import { Slot } from "expo-router";
 
 export default function RootLayout() {
-  return <Stack />;
+  const [loaded] = useFonts({
+    // SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    PlusJakartaSans: require("../assets/fonts/PlusJakartaSans-Regular.ttf"),
+  });
+
+  if (!loaded) {
+    // Async font loading only occurs in development.
+    return null;
+  }
+
+  return <Slot />;
 }

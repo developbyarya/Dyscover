@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#8300BA",
-    paddingTop: 60,
+    paddingTop: 40,
     paddingHorizontal: 24,
   },
   topRow: {
@@ -98,24 +98,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   illustration: {
-    width: "100%",
-    height: "100%",
+    width: 359.87,
+    height: 482.59,
     marginTop: 100,
     marginLeft: -130,
     zIndex: 1,
   },
   blob: {
     position: "absolute",
-    width: 500.66,
-    height: 560,
-    marginTop: 90,
+    width: 769.37,
+    height: 583.81,
+    marginTop: 140,
     marginLeft: -10,
     // transform: [{ rotate: "-180deg" }],
     zIndex: 0,
   },
   aIcon: {
     position: "absolute",
-    top: 10,
+    top: 1,
     left: 146,
     width: 40.73,
     height: 44.66,
@@ -132,9 +132,9 @@ const styles = StyleSheet.create({
   oIcon: {
     position: "absolute",
     top: 200,
-    left: 220,
-    width: 25.89,
-    height: 28.92,
+    left: 150,
+    width: 40.73,
+    height: 44.66,
     zIndex: 2,
   },
   uIcon: {

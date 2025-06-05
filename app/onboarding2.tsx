@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#8300BA",
-    paddingTop: 60,
+    paddingTop: 40,
     paddingHorizontal: 24,
   },
   topRow: {
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   illustration: {
-    width: "100%",
-    height: "100%",
+    width: 331.53,
+    height: 515,
     marginTop: 80,
     marginLeft: -100,
     zIndex: 1,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     top: 180,
     left: 260,
     width: 77.1,
-    height: 64.2,
+    height: 64.3,
     zIndex: 2,
   },
   greenIcon: {

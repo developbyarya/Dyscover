@@ -52,10 +52,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 279,
     height: 80,
-    // marginTop: 102,
-    marginLeft: 61,
-    marginBottom: 350,
-    alignSelf: "flex-start",
+    // marginTop: 10,
+    marginBottom: 380,
+    alignSelf: "center",
   },
   brand: {
     color: "#FFD233",

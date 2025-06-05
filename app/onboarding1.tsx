@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#8300BA",
-    paddingTop: 60,
+    paddingTop: 40,
     paddingHorizontal: 24,
   },
   topRow: {
@@ -117,8 +117,8 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
   illustration: {
-    width: 500.66,
-    height: 400,
+    width: 331.53,
+    height: 515,
     marginTop: 50,
     marginLeft: -140,
     zIndex: 1,

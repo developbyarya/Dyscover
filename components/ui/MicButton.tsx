@@ -90,6 +90,7 @@ export default function MicButton({ onPress, onFinish, style }: MicButtonProps) 
   }, []);
   React.useEffect(() => {
     if (result) {
+      stopRecording();
       console.log(result);
     }
   }, [result]);

@@ -2,16 +2,26 @@
 import Voice from '@react-native-voice/voice';
 import { useEffect, useState } from 'react';
 
+interface Error {
+    code?: string;
+    message?: string;
+}
+
 export const useVoiceRecognition = () => {
   const [result, setResult] = useState('');
   const [started, setStarted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     Voice.onSpeechStart = () => setStarted(true);
     Voice.onSpeechResults = (e) => setResult(e.value?.[0] || '');
     Voice.onSpeechEnd = () => setStarted(false);
-    Voice.onSpeechError = (e) => setError(e.error?.message || 'Unknown error');
+    Voice.onSpeechError = (e) => {
+        setError({
+            code: e.error?.code,
+            message: e.error?.message
+        });
+    };
 
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
@@ -26,11 +36,14 @@ export const useVoiceRecognition = () => {
 
   const startRecognition = async () => {
     if (!Voice || typeof Voice.start !== 'function') {
-      setError('Voice module is not properly initialized.');
+      setError({
+        code: '0',
+        message: 'Voice module is not properly initialized.'
+      });
       return;
     }
     try {
-      await Voice.start('en-US');
+      await Voice.start('id-ID');
     } catch (e: any) {
       setError(e.message);
     }

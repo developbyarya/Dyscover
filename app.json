@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.Ambatuwin.Dyscover"
     },
     "android": {
       "adaptiveIcon": {
@@ -17,7 +18,10 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.Ambatuwin.Dyscover"
+      "package": "com.Ambatuwin.Dyscover",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -37,10 +41,19 @@
       ],
       [
         "expo-font",
-      {
-        "fonts": [
-          "./assets/fonts/Montserrat.ttf",
+        {
+          "fonts": [
+            "./assets/fonts/Montserrat.ttf",
             "./assets/fonts/Montserrat-Italic.ttf"
+          ]
+        }
+      ],
+      [
+        "react-native-permissions",
+        {
+          "iosPermissions": [
+            "MICROPHONE",
+            "SPEECH_RECOGNITION"
           ]
         }
       ]
@@ -48,6 +61,14 @@
     "experiments": {
       "typedRoutes": true
     },
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "4a8fb388-9a55-4351-b2de-03bf044be5aa"
+      }
+    }
   }
 }

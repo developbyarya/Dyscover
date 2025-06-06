@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Animated, Easing, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
+import { useVoiceRecognition } from "../backend/voiceRecognition";
 
 const initialImg = require("../../assets/images/Record-Button.png");
 const beforeImg = require("../../assets/images/record-before.png");
@@ -18,6 +19,13 @@ export default function MicButton({ onPress, onFinish, style }: MicButtonProps) 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isAfter = useRef(false);
+  const {
+    result,
+    started,
+    error,
+    startRecognition,
+    stopRecognition,
+  } = useVoiceRecognition();
 
   const clearAllTimers = () => {
     if (intervalRef.current) {
@@ -50,6 +58,7 @@ export default function MicButton({ onPress, onFinish, style }: MicButtonProps) 
   };
 
   const stopRecording = () => {
+    stopRecognition();
     clearAllTimers();
     setAnimating(false);
     setImage(initialImg);
@@ -62,6 +71,7 @@ export default function MicButton({ onPress, onFinish, style }: MicButtonProps) 
       stopRecording();
       return;
     }
+    startRecognition();
     setAnimating(true);
     isAfter.current = false;
     if (onPress) onPress();
@@ -78,6 +88,11 @@ export default function MicButton({ onPress, onFinish, style }: MicButtonProps) 
   React.useEffect(() => {
     return () => clearAllTimers();
   }, []);
+  React.useEffect(() => {
+    if (result) {
+      console.log(result);
+    }
+  }, [result]);
 
   return (
     <TouchableOpacity style={[styles.micButton, style]} onPress={handlePress} activeOpacity={0.8}>

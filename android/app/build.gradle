@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.anonymous.Dyscover'
+    namespace 'com.Ambatuwin.Dyscover'
     defaultConfig {
-        applicationId 'com.anonymous.Dyscover'
+        applicationId 'com.Ambatuwin.Dyscover'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

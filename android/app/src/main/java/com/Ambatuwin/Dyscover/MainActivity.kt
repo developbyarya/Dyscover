@@ -1,4 +1,4 @@
-package com.anonymous.Dyscover
+package com.Ambatuwin.Dyscover
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

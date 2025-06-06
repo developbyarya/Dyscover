@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.Ambatuwin.Dyscover"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,6 +26,11 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      ["@react-native-voice/voice",
+      {
+        "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+        "speechRecognitionPermission": "Allow $(PRODUCT_NAME) to access your speech recognition"
+      }],
       "expo-router",
       [
         "expo-splash-screen",
@@ -37,9 +43,9 @@
       ],
       [
         "expo-font",
-      {
-        "fonts": [
-          "./assets/fonts/Montserrat.ttf",
+        {
+          "fonts": [
+            "./assets/fonts/Montserrat.ttf",
             "./assets/fonts/Montserrat-Italic.ttf"
           ]
         }
@@ -48,6 +54,8 @@
     "experiments": {
       "typedRoutes": true
     },
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": [
+      "**/*"
+    ]
   }
 }

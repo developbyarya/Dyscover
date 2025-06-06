@@ -1,6 +1,7 @@
+import Button from "@/components/ui/Button";
 import { useRouter } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function WelcomeScreen() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function WelcomeScreen() {
       <Text style={styles.title}>
         Selamat Datang{"\n"}di <Text style={styles.brand}>Dyscover</Text>
       </Text>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.button}
         activeOpacity={0.8}
         onPress={() => {
@@ -18,14 +19,17 @@ export default function WelcomeScreen() {
           router.replace("/onboarding1");
         }}>
         <Text style={styles.buttonText}>Mulai</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+      <Button style={styles.button} onPress={() => router.replace("/onboarding/onboarding1")} backgroundColor="#FFD233" borderRadius={16} color="#8300BA">
+        Mulai
+      </Button>
       <Text style={styles.loginText}>
         Sudah punya akun?{" "}
         <Text
           style={styles.loginLink}
           onPress={() => {
             // Ganti '/login' dengan halaman login Anda
-            router.replace("/login");
+            router.replace("/home/page");
           }}>
           Masuk
         </Text>
@@ -52,10 +56,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 279,
     height: 80,
-    // marginTop: 102,
-    marginLeft: 61,
-    marginBottom: 350,
-    alignSelf: "flex-start",
+    // marginTop: 10,
+    marginBottom: 380,
+    alignSelf: "center",
   },
   brand: {
     color: "#FFD233",
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 24,
+    marginBottom: 80,
     alignSelf: "center",
     shadowColor: "#FFD233",
     shadowOffset: { width: 0, height: 8 },
@@ -78,10 +81,10 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   buttonText: {
-    color: "#8800cc",
-    fontSize: 24,
+    color: "#fff",
     fontFamily: "PlusJakartaSans",
     fontWeight: "700",
+    fontSize: 24,
   },
   loginText: {
     color: "#fff",

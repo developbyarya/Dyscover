@@ -1,35 +1,43 @@
 import { useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import NextButton from "../components/ui/NextButton";
-import ProgressBar from "../components/ui/ProgressBar";
+import NextButton from "../../components/ui/NextButton";
+import ProgressBar from "../../components/ui/ProgressBar";
 
-export default function Onboarding1() {
+export default function Onboarding2() {
   const router = useRouter();
 
   return (
     <View style={styles.container}>
+      {/* Progress Bar & Skip */}
       <View style={styles.topRow}>
-        <ProgressBar progress={0.25} style={{ marginRight: 16 }} />
+        <ProgressBar progress={0.5} style={{ marginRight: 16 }} />
         <TouchableOpacity onPress={() => router.replace("/welcome")}>
           <Text style={styles.skip}>Skip</Text>
         </TouchableOpacity>
       </View>
 
+      {/* Title & Description */}
       <View style={styles.textContainer}>
         <Text style={styles.title}>
-          Deteksi Disleksia{"\n"}
-          <Text style={styles.highlight}>Sejak Dini</Text>
+          Teknologi <Text style={styles.highlight}>Cerdas</Text>
         </Text>
-        <Text style={styles.desc}>Kenali risiko disleksia sejak awal melalui skrining cepat dan akurat.</Text>
+        <Text style={styles.desc}>Didukung AI dari Microsoft Azure, Dyscover memberi hasil skrining yang lebih personal, adaptif, dan akurat.</Text>
       </View>
 
+      {/* Illustration */}
       <View style={styles.illustrationContainer}>
-        <Image source={require("../assets/images/doctor-blob.png")} style={styles.blob} resizeMode="contain" />
-        <Image source={require("../assets/images/doctor-illustration.png")} style={styles.illustration} resizeMode="contain" />
+        {/* Heart Icon */}
+        <Image source={require("../../assets/images/heart-icon.png")} style={styles.heartIcon} resizeMode="contain" />
+        {/* Green Icon */}
+        <Image source={require("../../assets/images/green-icon.png")} style={styles.greenIcon} resizeMode="contain" />
+        <Image source={require("../../assets/images/robot-blob.png")} style={styles.blob} resizeMode="contain" />
+        {/* Ilustrasi robot di tengah */}
+        <Image source={require("../../assets/images/robot-illustration.png")} style={styles.illustration} resizeMode="contain" />
       </View>
 
-      <NextButton onPress={() => router.replace("/onboarding2")} />
+      {/* Next Button */}
+      <NextButton onPress={() => router.replace("/onboarding/onboarding3")} />
     </View>
   );
 }
@@ -46,21 +54,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 24,
-  },
-  progressBarBg: {
-    flex: 1,
-    width: 191,
-    height: 8,
-    backgroundColor: "#a259d9",
-    borderRadius: 4,
-    marginRight: 16,
-    overflow: "hidden",
-  },
-  progressBarFill: {
-    width: "25%",
-    height: 8,
-    backgroundColor: "#FFD233",
-    borderRadius: 4,
   },
   skip: {
     color: "#fff",
@@ -84,8 +77,6 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     letterSpacing: 0,
     marginBottom: 8,
-    width: 370,
-    height: 88,
   },
   highlight: {
     color: "#FFD233",
@@ -107,20 +98,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  blob: {
-    position: "absolute",
-    width: 400.66,
-    height: 600,
-    marginTop: 80,
-    marginLeft: -30,
-    // transform: [{ rotate: "-180deg" }],
-    zIndex: 0,
-  },
   illustration: {
     width: 331.53,
     height: 515,
-    marginTop: 50,
-    marginLeft: -140,
+    marginTop: 80,
+    marginLeft: -100,
     zIndex: 1,
+  },
+  blob: {
+    position: "absolute",
+    width: 500.66,
+    height: 560,
+    marginTop: 90,
+    marginLeft: -10,
+    // transform: [{ rotate: "-180deg" }],
+    zIndex: 0,
+  },
+  heartIcon: {
+    position: "absolute",
+    top: 180,
+    left: 260,
+    width: 77.1,
+    height: 64.3,
+    zIndex: 2,
+  },
+  greenIcon: {
+    position: "absolute",
+    top: 50,
+    left: 210,
+    width: 77.1,
+    height: 64.2,
+    zIndex: 2,
   },
 });

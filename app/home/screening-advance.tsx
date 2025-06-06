@@ -1,33 +1,48 @@
 import BackButton from "@/components/ui/BackButton";
+import Button from "@/components/ui/Button";
 import MicButton from "@/components/ui/MicButton";
 import ProgressBar from "@/components/ui/ProgressBar";
 import SpeakerButton from "@/components/ui/SpeakerButton";
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Screening() {
   const router = useRouter();
+  const [showNext, setShowNext] = useState(false);
+  const [showMic, setShowMic] = useState(true);
+
+  const handleMicFinish = () => {
+    setShowNext(true);
+    setShowMic(false);
+  };
 
   return (
     <View style={styles.container}>
       {/* Header: Back Button & Progress Bar */}
       <View style={styles.headerRow}>
-        <BackButton onPress={() => router.replace("/screening-instruction")} />
-        <ProgressBar progress={0.15} style={styles.progressBar} variant="gradient" />
+        <BackButton onPress={() => router.replace("/home/screening-instruction")} />
+        <ProgressBar progress={0.5} style={styles.progressBar} variant="gradient" />
       </View>
 
       {/* Word Card */}
       <View style={styles.wordCard}>
-        <Text style={styles.wordText}>ab</Text>
+        <Text style={styles.wordText}>Buku</Text>
         <SpeakerButton style={styles.speakerIcon} />
       </View>
 
       {/* Tap to start text */}
-      <Text style={styles.tapText}>Tap untuk memulai</Text>
+      {showMic && <Text style={styles.tapText}>Tap untuk memulai</Text>}
 
       {/* Microphone Button */}
-      <MicButton />
+      {showMic && <MicButton onFinish={handleMicFinish} />}
+
+      {/* Button Lanjut */}
+      {showNext && (
+        <Button onPress={() => router.replace("/home/screening-report")} backgroundColor="#8800cc" borderRadius={16} style={{ position: "absolute", bottom: 40, left: 24, right: 24 }}>
+          Selesai
+        </Button>
+      )}
     </View>
   );
 }

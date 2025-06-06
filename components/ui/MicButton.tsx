@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Animated, Easing, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
 import { useVoiceRecognition } from "../backend/voiceRecognition";
+import { useScreening } from "../context/ScreeningContext";
 
 const initialImg = require("../../assets/images/Record-Button.png");
 const beforeImg = require("../../assets/images/record-before.png");
@@ -10,15 +11,17 @@ interface MicButtonProps {
   onPress?: () => void;
   onFinish?: () => void;
   style?: ViewStyle;
+  expectedWord?: string;
 }
 
-export default function MicButton({ onPress, onFinish, style }: MicButtonProps) {
+export default function MicButton({ onPress, onFinish, style, expectedWord }: MicButtonProps) {
   const [image, setImage] = useState(initialImg);
   const [animating, setAnimating] = useState(false);
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isAfter = useRef(false);
+  const { addScore } = useScreening();
   const {
     result,
     started,
@@ -88,12 +91,22 @@ export default function MicButton({ onPress, onFinish, style }: MicButtonProps) 
   React.useEffect(() => {
     return () => clearAllTimers();
   }, []);
+
   React.useEffect(() => {
     if (result) {
       stopRecording();
-      console.log(result);
+      if (expectedWord) {
+        // Compare case-insensitive and trim whitespace
+        const normalizedResult = result.toLowerCase().trim();
+        const normalizedExpected = expectedWord.toLowerCase().trim();
+        addScore({
+          word: normalizedResult,
+          expectedWord: normalizedExpected,
+          isCorrect: normalizedResult === normalizedExpected
+        });
+      }
     }
-  }, [result]);
+  }, [result, expectedWord]);
 
   return (
     <TouchableOpacity style={[styles.micButton, style]} onPress={handlePress} activeOpacity={0.8}>

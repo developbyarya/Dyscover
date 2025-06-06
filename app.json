@@ -18,7 +18,10 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.Ambatuwin.Dyscover"
+      "package": "com.Ambatuwin.Dyscover",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -26,11 +29,13 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      ["@react-native-voice/voice",
-      {
-        "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
-        "speechRecognitionPermission": "Allow $(PRODUCT_NAME) to access your speech recognition"
-      }],
+      [
+        "@react-native-voice/voice",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "speechRecognitionPermission": "Allow $(PRODUCT_NAME) to access your speech recognition"
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
@@ -56,6 +61,12 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "4a8fb388-9a55-4351-b2de-03bf044be5aa"
+      }
+    }
   }
 }

@@ -1,3 +1,4 @@
+import { useScreening } from "@/components/context/ScreeningContext";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import MicButton from "@/components/ui/MicButton";
@@ -7,10 +8,18 @@ import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+const CURRENT_WORD = "ab";
+
 export default function Screening() {
   const router = useRouter();
   const [showNext, setShowNext] = useState(false);
   const [showMic, setShowMic] = useState(true);
+  const { clearScores } = useScreening();
+
+  React.useEffect(() => {
+    // Clear scores when starting new screening
+    clearScores();
+  }, []);
 
   const handleMicFinish = () => {
     setShowNext(true);
@@ -27,7 +36,7 @@ export default function Screening() {
 
       {/* Word Card */}
       <View style={styles.wordCard}>
-        <Text style={styles.wordText}>ab</Text>
+        <Text style={styles.wordText}>{CURRENT_WORD}</Text>
         <SpeakerButton style={styles.speakerIcon} />
       </View>
 
@@ -35,7 +44,7 @@ export default function Screening() {
       {showMic && <Text style={styles.tapText}>Tap untuk memulai</Text>}
 
       {/* Microphone Button */}
-      {showMic && <MicButton onFinish={handleMicFinish} />}
+      {showMic && <MicButton onFinish={handleMicFinish} expectedWord={CURRENT_WORD} />}
 
       {/* Button Lanjut */}
       {showNext && (

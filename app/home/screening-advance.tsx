@@ -7,6 +7,8 @@ import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+const CURRENT_WORD = "Buku";
+
 export default function Screening() {
   const router = useRouter();
   const [showNext, setShowNext] = useState(false);
@@ -27,7 +29,7 @@ export default function Screening() {
 
       {/* Word Card */}
       <View style={styles.wordCard}>
-        <Text style={styles.wordText}>Buku</Text>
+        <Text style={styles.wordText}>{CURRENT_WORD}</Text>
         <SpeakerButton style={styles.speakerIcon} />
       </View>
 
@@ -35,7 +37,7 @@ export default function Screening() {
       {showMic && <Text style={styles.tapText}>Tap untuk memulai</Text>}
 
       {/* Microphone Button */}
-      {showMic && <MicButton onFinish={handleMicFinish} />}
+      {showMic && <MicButton onFinish={handleMicFinish} expectedWord={CURRENT_WORD} />}
 
       {/* Button Lanjut */}
       {showNext && (

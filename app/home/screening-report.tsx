@@ -1,9 +1,15 @@
+import { useScreening } from "@/components/context/ScreeningContext";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function ScreeningResult() {
   const router = useRouter();
+  const { scores, getAccuracy } = useScreening();
+  const accuracy = Math.round(getAccuracy());
+  const correctAnswers = scores.filter(score => score.isCorrect).length;
+  const totalAnswers = scores.length;
+  const currentDate = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
 
   return (
     <View style={styles.container}>
@@ -13,24 +19,22 @@ export default function ScreeningResult() {
           <Image source={require("../../assets/Icons/back.png")} style={styles.backIcon} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Hasil Screening</Text>
-        <Text style={styles.headerDate}>3 Juni 2025</Text>
+        <Text style={styles.headerDate}>{currentDate}</Text>
         <TouchableOpacity style={styles.shareButton}>
           <Image source={require("../../assets/Icons/share.png")} style={styles.shareIcon} />
         </TouchableOpacity>
         {/* Circular Progress */}
         <View style={styles.progressCircleContainer}>
           <View style={styles.progressCircleBg} />
-          <View style={styles.progressCircleFg} />
-          <Text style={styles.progressText}>80%</Text>
+          <View style={[styles.progressCircleFg, { transform: [{ rotate: `${accuracy * 3.6}deg` }] }]} />
+          <Text style={styles.progressText}>{accuracy}%</Text>
         </View>
         {/* Score & Time */}
         <View style={styles.scoreRow}>
           <View style={styles.scoreBox}>
-            {/* <Image source={require("../../assets/images/check.png")} style={styles.scoreIcon} /> */}
-            <Text style={styles.scoreText}>8/10 Benar</Text>
+            <Text style={styles.scoreText}>{correctAnswers}/{totalAnswers} Benar</Text>
           </View>
           <View style={styles.scoreBox}>
-            {/* <Image source={require("../../assets/images/clock.png")} style={styles.scoreIcon} /> */}
             <Text style={styles.scoreText}>10 Menit</Text>
           </View>
         </View>
@@ -39,29 +43,26 @@ export default function ScreeningResult() {
         {/* Explanation Box */}
         <View style={styles.explanationBox}>
           <Text style={styles.explanationText}>
-            Seorang anak pada kelompok usia ini diharapkan dapat membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>90%</Text>. Indra membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>80%</Text>.
+            Seorang anak pada kelompok usia ini diharapkan dapat membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>90%</Text>. Indra membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>{accuracy}%</Text>.
           </Text>
         </View>
 
         {/* Risiko */}
         <Text style={styles.sectionTitle}>Tingkat Risiko</Text>
-        <View style={styles.riskBadge}>
-          <Text style={styles.riskText}>Rendah</Text>
+        <View style={[styles.riskBadge, { backgroundColor: accuracy >= 80 ? "#FFD233" : "#FF3B3B" }]}>
+          <Text style={styles.riskText}>{accuracy >= 80 ? "Rendah" : "Tinggi"}</Text>
         </View>
 
         {/* Langkah Selanjutnya */}
         <Text style={styles.sectionTitle}>Langkah Selanjutnya</Text>
         <View style={styles.nextSteps}>
           <View style={styles.stepRow}>
-            {/* <Image source={require("../../assets/images/gamepad.png")} style={styles.stepIcon} /> */}
             <Text style={styles.stepText}>Gunakan fitur gamifikasi untuk melatih kesadaran fonemik dan pengenalan huruf secara rutin.</Text>
           </View>
           <View style={styles.stepRow}>
-            {/* <Image source={require("../../assets/images/heart.png")} style={styles.stepIcon} /> */}
             <Text style={styles.stepText}>Lakukan skrining ulang setelah 4 minggu latihan untuk memantau perkembangan.</Text>
           </View>
           <View style={styles.stepRow}>
-            {/* <Image source={require("../../assets/images/clipboard.png")} style={styles.stepIcon} /> */}
             <Text style={styles.stepText}>Pertimbangkan untuk berkonsultasi dengan spesialis atau psikolog anak untuk evaluasi lebih mendalam.</Text>
           </View>
         </View>

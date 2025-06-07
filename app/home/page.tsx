@@ -20,7 +20,7 @@ export default function HomePage() {
 
         {/* Greeting Card */}
         <TouchableOpacity style={styles.greetingCard} onPress={() => router.push("/home/screening-instruction")}>
-          <Image source={require("../../assets/images/Frame.png")} style={styles.blob} resizeMode="contain" />
+          <Image source={require("../../assets/images/frame-blob.png")} style={styles.blob} resizeMode="contain" />
           <Text style={styles.greetingTitle}>Halo, Indra!</Text>
           <Text style={styles.greetingSubtitle}>Ayo cek disleksiamu</Text>
           <View style={styles.screeningButton}>
@@ -32,7 +32,7 @@ export default function HomePage() {
         {/* Tips & Game */}
         <View style={styles.row}>
           <TouchableOpacity style={styles.cardTips} onPress={() => router.push("/home/tips")}>
-            <Image source={require("../../assets/Icons/half-bulb.png")} style={styles.cardTipsBg} resizeMode="contain" />
+            <Image source={require("../../assets/Icons/half-blub.png")} style={styles.cardTipsBg} resizeMode="contain" />
             <Image source={require("../../assets/Icons/bulb.png")} style={styles.cardTipsIcon} resizeMode="contain" />
             <Text style={styles.cardTipsTitle}>Tips</Text>
             <Text style={styles.cardTipsSubtitle}>Informasi Disleksia</Text>
@@ -70,15 +70,15 @@ export default function HomePage() {
           <Text style={[styles.tabLabel, { color: "#8300BA" }]}>Beranda</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tabItem} onPress={() => router.push("/permainan/page")}>
-          <Image source={require("../../assets/Icons/game-menu.png")} style={{ width: 50, height: 40 }} resizeMode="contain" />
+          <Image source={require("../../assets/Icons/game-menu.png")} style={{ width: 30, height: 40 }} resizeMode="contain" />
           <Text style={styles.tabLabel}>Permainan</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tabItem}>
-          <Image source={require("../../assets/Icons/riwayat-menu.png")} style={{ width: 50, height: 40 }} resizeMode="contain" />
+          <Image source={require("../../assets/Icons/riwayat-menu.png")} style={{ width: 30, height: 40 }} resizeMode="contain" />
           <Text style={styles.tabLabel}>Riwayat</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tabItem}>
-          <Image source={require("../../assets/Icons/profil-menu.png")} style={{ width: 50, height: 40 }} resizeMode="contain" />
+          <Image source={require("../../assets/Icons/profil-menu.png")} style={{ width: 30, height: 40 }} resizeMode="contain" />
           <Text style={styles.tabLabel}>Profil</Text>
         </TouchableOpacity>
       </View>
@@ -184,12 +184,11 @@ const styles = StyleSheet.create({
   },
   cardTipsBg: {
     position: "absolute",
-    right: -50,
+    right: -30,
     bottom: -10,
-    width: 155.42,
-    height: 217.58,
+    width: 175.42,
+    height: 201.58,
     zIndex: 0,
-    opacity: 0.2,
   },
   cardTipsIcon: {
     width: 48,
@@ -250,7 +249,7 @@ const styles = StyleSheet.create({
     width: 231.33,
     height: 232.98,
     zIndex: 0,
-    opacity: 0.2,
+    opacity: 0.22,
   },
   cardTitle: {
     fontSize: 20,

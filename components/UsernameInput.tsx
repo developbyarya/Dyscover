@@ -1,26 +1,20 @@
-import React from 'react';
-import { Image, StyleSheet, TextInput, View } from 'react-native';
+import React from "react";
+import { Image, StyleSheet, TextInput, View } from "react-native";
 
 const UsernameInput = () => {
-
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/Icons/Lock.svg")}/>
-      
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        placeholderTextColor="#999"
-      />
+      <Image style={{ width: 40, height: 24 }} source={require("../assets/Icons/Email.png")} />
+      <TextInput style={styles.input} placeholder="" placeholderTextColor="#999" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: '#8300ba',
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "#8300ba",
     borderWidth: 2,
     borderRadius: 12,
     paddingHorizontal: 12,
@@ -32,7 +26,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     marginHorizontal: 8,
-    color: '#000',
+    color: "#000",
     fontSize: 16,
   },
 });

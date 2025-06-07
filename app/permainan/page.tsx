@@ -44,21 +44,21 @@ export default function PermainanPage() {
       {/* Tab Bar */}
       <View style={styles.tabBar}>
         <TouchableOpacity style={styles.tabItem} onPress={() => router.push("/home/page")}>
-          <Image source={require("../../assets/Icons/beranda-menu-gray.png")} style={{ width: 50, height: 40 }} resizeMode="contain" />
+          <Image source={require("../../assets/Icons/beranda-menu-gray.png")} style={{ width: 30, height: 40 }} resizeMode="contain" />
           <Text style={styles.tabLabel}>Beranda</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tabItem} onPress={() => router.push("/permainan/page")}>
+        <TouchableOpacity style={styles.tabItem}>
           <View style={styles.tabIconContainer}>
             <Image source={require("../../assets/Icons/game-menu-white.png")} style={{ width: 24, height: 24 }} resizeMode="contain" />
           </View>
           <Text style={[styles.tabLabel, { color: "#8300BA" }]}>Permainan</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tabItem}>
-          <Image source={require("../../assets/Icons/riwayat-menu.png")} style={{ width: 50, height: 40 }} resizeMode="contain" />
+          <Image source={require("../../assets/Icons/riwayat-menu.png")} style={{ width: 30, height: 40 }} resizeMode="contain" />
           <Text style={styles.tabLabel}>Riwayat</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tabItem}>
-          <Image source={require("../../assets/Icons/profil-menu.png")} style={{ width: 50, height: 40 }} resizeMode="contain" />
+          <Image source={require("../../assets/Icons/profil-menu.png")} style={{ width: 30, height: 40 }} resizeMode="contain" />
           <Text style={styles.tabLabel}>Profil</Text>
         </TouchableOpacity>
       </View>

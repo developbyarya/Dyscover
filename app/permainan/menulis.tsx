@@ -11,7 +11,7 @@ export default function MenulisPage() {
     <View style={styles.container}>
       <Image source={require("../../assets/images/Menulis.png")} style={styles.fullBg} resizeMode="cover" />
       <View style={styles.backBtnWrapper}>
-        <BackButton onPress={() => router.push("/permainan/page")} />
+        <BackButton onPress={() => router.push("/permainan/page")} isYellow />
       </View>
     </View>
   );

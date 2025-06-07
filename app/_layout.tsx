@@ -1,6 +1,7 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -13,7 +14,7 @@ export default function RootLayout() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom", "left", "right"]}>
       <Stack screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="auth/signin" options={{ headerShown: false }} />
@@ -29,7 +30,7 @@ export default function RootLayout() {
         <Stack.Screen name="home/screening" options={{ headerShown: false }} />
         <Stack.Screen name="home/screening-instruction" options={{ headerShown: false }} /> */}
       </Stack>
-    </View>
+    </SafeAreaView>
   );
 }
 

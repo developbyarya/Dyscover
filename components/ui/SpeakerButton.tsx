@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
 
-const speakerButtonImg = require("../../assets/images/volume-high.png");
+const speakerButtonImg = require("../../assets/Icons/volume-high.png");
 
 interface SpeakerButtonProps {
   onPress?: () => void;

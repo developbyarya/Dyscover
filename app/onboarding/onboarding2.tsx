@@ -12,7 +12,7 @@ export default function Onboarding2() {
       {/* Progress Bar & Skip */}
       <View style={styles.topRow}>
         <ProgressBar progress={0.5} style={{ marginRight: 16 }} />
-        <TouchableOpacity onPress={() => router.replace("/welcome")}>
+        <TouchableOpacity onPress={() => router.replace("/home/page")}>
           <Text style={styles.skip}>Skip</Text>
         </TouchableOpacity>
       </View>
@@ -28,7 +28,7 @@ export default function Onboarding2() {
       {/* Illustration */}
       <View style={styles.illustrationContainer}>
         {/* Heart Icon */}
-        <Image source={require("../../assets/images/heart-icon.png")} style={styles.heartIcon} resizeMode="contain" />
+        <Image source={require("../../assets/Icons/heart-icon.png")} style={styles.heartIcon} resizeMode="contain" />
         {/* Green Icon */}
         <Image source={require("../../assets/Icons/green-icon.png")} style={styles.greenIcon} resizeMode="contain" />
         <Image source={require("../../assets/images/robot-blob.png")} style={styles.blob} resizeMode="contain" />

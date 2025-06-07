@@ -12,7 +12,7 @@ export default function Onboarding3() {
       {/* Progress Bar & Skip */}
       <View style={styles.topRow}>
         <ProgressBar progress={1} style={{ marginRight: 16 }} />
-        <TouchableOpacity onPress={() => router.replace("/welcome")}>
+        <TouchableOpacity onPress={() => router.replace("/home/page")}>
           <Text style={styles.skip}>Skip</Text>
         </TouchableOpacity>
       </View>

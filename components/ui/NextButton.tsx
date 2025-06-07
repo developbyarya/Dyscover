@@ -2,7 +2,7 @@ import React from "react";
 import { Image, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
 
 // Pastikan path dan nama file gambar benar
-const arrowImage = require("../../assets/images/Solid arrow right.png");
+const arrowImage = require("../../assets/Icons/Solid arrow right.png");
 
 type NextButtonProps = {
   onPress: () => void;

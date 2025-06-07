@@ -28,12 +28,12 @@ export default function Onboarding3() {
       {/* Illustration */}
       <View style={styles.illustrationContainer}>
         <Image source={require("../../assets/images/learn-blob.png")} style={styles.blob} resizeMode="contain" />
-        <Image source={require("../../assets/images/a-icon.png")} style={styles.aIcon} resizeMode="contain" />
-        <Image source={require("../../assets/images/i-icon.png")} style={styles.iIcon} resizeMode="contain" />
-        <Image source={require("../../assets/images/o-icon.png")} style={styles.oIcon} resizeMode="contain" />
-        <Image source={require("../../assets/images/u-icon.png")} style={styles.uIcon} resizeMode="contain" />
-        <Image source={require("../../assets/images/apple-icon.png")} style={styles.appleIcon} resizeMode="contain" />
-        <Image source={require("../../assets/images/elephant-icon.png")} style={styles.elephantIcon} resizeMode="contain" />
+        <Image source={require("../../assets/Icons/a-icon.png")} style={styles.aIcon} resizeMode="contain" />
+        <Image source={require("../../assets/Icons/i-icon.png")} style={styles.iIcon} resizeMode="contain" />
+        <Image source={require("../../assets/Icons/o-icon.png")} style={styles.oIcon} resizeMode="contain" />
+        <Image source={require("../../assets/Icons/u-icon.png")} style={styles.uIcon} resizeMode="contain" />
+        <Image source={require("../../assets/Icons/apple-icon.png")} style={styles.appleIcon} resizeMode="contain" />
+        <Image source={require("../../assets/Icons/elephant-icon.png")} style={styles.elephantIcon} resizeMode="contain" />
         {/* Ilustrasi anak belajar di depan */}
         <Image source={require("../../assets/images/learn-illustration.png")} style={styles.illustration} resizeMode="contain" />
       </View>

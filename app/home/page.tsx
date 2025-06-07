@@ -40,7 +40,7 @@ export default function HomePage() {
               <Text style={styles.cardTipsButtonText}>Buka</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.cardGame} onPress={() => router.push("/home/tips")}>
+          <TouchableOpacity style={styles.cardGame} onPress={() => router.push("/permainan/page")}>
             <Image source={require("../../assets/Icons/half-game.png")} style={styles.cardGameBg} resizeMode="contain" />
             <Image source={require("../../assets/Icons/Game-Button.png")} style={styles.cardTipsIcon} resizeMode="contain" />
             <Text style={styles.cardTipsTitle}>Game</Text>
@@ -69,7 +69,7 @@ export default function HomePage() {
           </View>
           <Text style={[styles.tabLabel, { color: "#8300BA" }]}>Beranda</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tabItem}>
+        <TouchableOpacity style={styles.tabItem} onPress={() => router.push("/permainan/page")}>
           <Image source={require("../../assets/Icons/game-menu.png")} style={{ width: 50, height: 40 }} resizeMode="contain" />
           <Text style={styles.tabLabel}>Permainan</Text>
         </TouchableOpacity>

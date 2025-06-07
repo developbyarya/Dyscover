@@ -53,7 +53,7 @@ export default function PermainanPage() {
           </View>
           <Text style={[styles.tabLabel, { color: "#8300BA" }]}>Permainan</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tabItem}>
+        <TouchableOpacity style={styles.tabItem} onPress={() => router.push("/riwayat/page")}>
           <Image source={require("../../assets/Icons/riwayat-menu.png")} style={{ width: 30, height: 40 }} resizeMode="contain" />
           <Text style={styles.tabLabel}>Riwayat</Text>
         </TouchableOpacity>

@@ -73,7 +73,7 @@ export default function HomePage() {
           <Image source={require("../../assets/Icons/game-menu.png")} style={{ width: 30, height: 40 }} resizeMode="contain" />
           <Text style={styles.tabLabel}>Permainan</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tabItem}>
+        <TouchableOpacity style={styles.tabItem} onPress={() => router.push("/riwayat/page")}>
           <Image source={require("../../assets/Icons/riwayat-menu.png")} style={{ width: 30, height: 40 }} resizeMode="contain" />
           <Text style={styles.tabLabel}>Riwayat</Text>
         </TouchableOpacity>
@@ -185,9 +185,9 @@ const styles = StyleSheet.create({
   cardTipsBg: {
     position: "absolute",
     right: -30,
-    bottom: -10,
-    width: 175.42,
-    height: 201.58,
+    bottom: 10,
+    width: 231.33,
+    height: 232.98,
     zIndex: 0,
   },
   cardTipsIcon: {

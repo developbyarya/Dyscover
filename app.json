@@ -4,7 +4,7 @@
     "slug": "Dyscover",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/Logo-Dyscover.png",
     "scheme": "dyscover",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/Logo-Dyscover.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
@@ -37,9 +37,9 @@
       ],
       [
         "expo-font",
-      {
-        "fonts": [
-          "./assets/fonts/Montserrat.ttf",
+        {
+          "fonts": [
+            "./assets/fonts/Montserrat.ttf",
             "./assets/fonts/Montserrat-Italic.ttf"
           ]
         }
@@ -48,6 +48,14 @@
     "experiments": {
       "typedRoutes": true
     },
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "995bd08c-4e4a-483d-b336-afbbb26d349c"
+      }
+    }
   }
 }

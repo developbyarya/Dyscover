@@ -39,7 +39,7 @@ export default function Onboarding3() {
       </View>
 
       {/* Next Button */}
-      <NextButton onPress={() => router.replace("/welcome")} />
+      <NextButton onPress={() => router.replace("/home/page")} />
     </View>
   );
 }

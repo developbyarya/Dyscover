@@ -5,38 +5,61 @@ import MicButton from "@/components/ui/MicButton";
 import ProgressBar from "@/components/ui/ProgressBar";
 import SpeakerButton from "@/components/ui/SpeakerButton";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-
-const CURRENT_WORD = "ab";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
 export default function Screening() {
   const router = useRouter();
   const [showNext, setShowNext] = useState(false);
   const [showMic, setShowMic] = useState(true);
-  const { clearScores } = useScreening();
+  const { 
+    clearScores, 
+    loadTestData, 
+    isLoading,
+    alphabetTest,
+    currentAlphabetIndex,
+    setCurrentAlphabetIndex
+  } = useScreening();
 
-  React.useEffect(() => {
-    // Clear scores when starting new screening
+  useEffect(() => {
     clearScores();
+    loadTestData();
   }, []);
 
   const handleMicFinish = () => {
-    setShowNext(true);
-    setShowMic(false);
+    console.log('currentAlphabetIndex', currentAlphabetIndex);
+    if (currentAlphabetIndex < alphabetTest.length - 1) {
+      setCurrentAlphabetIndex(currentAlphabetIndex + 1);
+      setShowMic(true);
+      setShowNext(false);
+    } else {
+      setShowNext(true);
+      setShowMic(false);
+    }
   };
+
+  if (isLoading || alphabetTest.length === 0) {
+    return (
+      <View style={[styles.container, styles.centered]}>
+        <ActivityIndicator size="large" color="#8800cc" />
+      </View>
+    );
+  }
+
+  const currentLetters = alphabetTest[currentAlphabetIndex];
+  const progress = (currentAlphabetIndex + 1) / alphabetTest.length;
 
   return (
     <View style={styles.container}>
       {/* Header: Back Button & Progress Bar */}
       <View style={styles.headerRow}>
         <BackButton onPress={() => router.replace("/home/screening-instruction")} />
-        <ProgressBar progress={0.25} style={styles.progressBar} variant="gradient" />
+        <ProgressBar progress={progress} style={styles.progressBar} variant="gradient" />
       </View>
 
       {/* Word Card */}
       <View style={styles.wordCard}>
-        <Text style={styles.wordText}>{CURRENT_WORD}</Text>
+        <Text style={styles.wordText}>{currentLetters.join("")}</Text>
         <SpeakerButton style={styles.speakerIcon} />
       </View>
 
@@ -44,11 +67,22 @@ export default function Screening() {
       {showMic && <Text style={styles.tapText}>Tap untuk memulai</Text>}
 
       {/* Microphone Button */}
-      {showMic && <MicButton onFinish={handleMicFinish} expectedWord={CURRENT_WORD} />}
+      {showMic && (
+        <MicButton 
+          onFinish={handleMicFinish} 
+          expectedWord={currentLetters.join("")}
+          testType="alphabet"
+        />
+      )}
 
       {/* Button Lanjut */}
       {showNext && (
-        <Button onPress={() => router.replace("/home/half-way")} backgroundColor="#8800cc" borderRadius={16} style={{ position: "absolute", bottom: 40, left: 24, right: 24 }}>
+        <Button 
+          onPress={() => router.replace("/home/half-way")} 
+          backgroundColor="#8800cc" 
+          borderRadius={16} 
+          style={{ position: "absolute", bottom: 40, left: 24, right: 24 }}
+        >
           Lanjut
         </Button>
       )}
@@ -63,6 +97,9 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 24,
     alignItems: "center",
+  },
+  centered: {
+    justifyContent: "center",
   },
   headerRow: {
     flexDirection: "row",

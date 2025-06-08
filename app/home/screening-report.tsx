@@ -5,10 +5,14 @@ import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "rea
 
 export default function ScreeningResult() {
   const router = useRouter();
-  const { scores, getAccuracy } = useScreening();
+  const { scores, getAccuracy, alphabetTest, wordTest } = useScreening();
   const accuracy = Math.round(getAccuracy());
-  const correctAnswers = scores.filter(score => score.isCorrect).length;
-  const totalAnswers = scores.length;
+  
+  // Filter out empty results and calculate statistics
+  const validScores = scores.filter(score => score.word.trim() !== '');
+  const correctAnswers = validScores.filter(score => score.isCorrect).length;
+  const totalExpected = alphabetTest.length + wordTest.length;
+  
   const currentDate = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
 
   return (
@@ -32,7 +36,7 @@ export default function ScreeningResult() {
         {/* Score & Time */}
         <View style={styles.scoreRow}>
           <View style={styles.scoreBox}>
-            <Text style={styles.scoreText}>{correctAnswers}/{totalAnswers} Benar</Text>
+            <Text style={styles.scoreText}>{correctAnswers}/{totalExpected} Benar</Text>
           </View>
           <View style={styles.scoreBox}>
             <Text style={styles.scoreText}>10 Menit</Text>
@@ -51,6 +55,17 @@ export default function ScreeningResult() {
         <Text style={styles.sectionTitle}>Tingkat Risiko</Text>
         <View style={[styles.riskBadge, { backgroundColor: accuracy >= 80 ? "#FFD233" : "#FF3B3B" }]}>
           <Text style={styles.riskText}>{accuracy >= 80 ? "Rendah" : "Tinggi"}</Text>
+        </View>
+
+        {/* Detailed Results */}
+        <Text style={styles.sectionTitle}>Detail Hasil</Text>
+        <View style={styles.explanationBox}>
+          <Text style={styles.detailText}>
+            Tes Alfabet: {validScores.filter(s => s.type === 'alphabet' && s.isCorrect).length}/{alphabetTest.length} benar
+          </Text>
+          <Text style={styles.detailText}>
+            Tes Kata: {validScores.filter(s => s.type === 'word' && s.isCorrect).length}/{wordTest.length} benar
+          </Text>
         </View>
 
         {/* Langkah Selanjutnya */}
@@ -263,4 +278,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "PlusJakartaSans",
   },
+  detailText: {
+    color: "#8300BA",
+    fontSize: 16,
+    fontFamily: "PlusJakartaSans",
+    marginBottom: 8,
+  }
 });

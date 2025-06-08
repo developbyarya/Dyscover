@@ -10,7 +10,7 @@ export default function ScreeningResult() {
     <View style={styles.container}>
       {/* Header Gradient */}
       <View style={styles.headerGradient}>
-        <TouchableOpacity style={styles.navButton} onPress={() => router.back()}>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.push("/home/screening-advance")}>
           <Ionicons name="arrow-back" size={24} color="#8300BA" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Hasil Screening</Text>

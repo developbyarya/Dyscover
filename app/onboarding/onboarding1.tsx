@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   illustration: {
     width: 331.53,
     height: 515,
-    marginTop: 50,
+    marginTop: 90,
     marginLeft: -140,
     zIndex: 1,
   },

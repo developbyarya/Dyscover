@@ -11,7 +11,7 @@ export default function HalfWayScreen() {
     <View style={styles.container}>
       {/* Header Row */}
       <View style={styles.headerRow}>
-        <BackButton onPress={() => router.back()} />
+        <BackButton onPress={() => router.push("/home/screening")} />
       </View>
 
       {/* Title & Subtitle Container */}
@@ -29,7 +29,7 @@ export default function HalfWayScreen() {
       </View>
 
       {/* Lanjut Button */}
-      <Button onPress={() => router.replace("/home/screening-advance")} backgroundColor="#8800cc" borderRadius={16} style={{ position: "absolute", bottom: 40, left: 24, right: 24 }}>
+      <Button style={{ position: "absolute", bottom: 40 }} onPress={() => router.replace("/home/screening-advance")} backgroundColor="#8800cc" borderRadius={16}>
         Lanjut
       </Button>
     </View>
@@ -89,14 +89,14 @@ const styles = StyleSheet.create({
     width: 500,
     height: 307,
   },
-  button: {
-    width: "90%",
-    backgroundColor: "#8300BA",
-    borderRadius: 16,
-    paddingVertical: 18,
-    alignItems: "center",
-    marginBottom: 40,
-  },
+  // button: {
+  //   width: "100%",
+  //   backgroundColor: "#8300BA",
+  //   borderRadius: 16,
+  //   paddingVertical: 18,
+  //   alignItems: "center",
+  //   marginBottom: 40,
+  // },
   buttonText: {
     color: "#fff",
     fontSize: 22,

@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
   },
   header: {
-    fontFamily: "PlusJakartaSans-Bold",
+    fontFamily: "PlusJakartaSans",
     fontSize: 32,
     color: "#8300BA",
     textAlign: "center",
@@ -92,9 +92,10 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   cardImage: {
-    ...StyleSheet.absoluteFillObject,
-    width: undefined,
-    height: undefined,
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    borderRadius: 20,
   },
   gradient: {
     ...StyleSheet.absoluteFillObject,

@@ -24,7 +24,7 @@ export default function SignIn() {
             <Text style={{ color: "black", fontSize: 14, fontWeight: 600, fontFamily: "PlusJakartaSans", marginBottom: 8 }}> Kata Sandi </Text>
             <PasswordInput />
           </View>
-          <TouchableOpacity style={styles.button} onPress={() => router.push("/home/page")}>
+          <TouchableOpacity style={styles.button} onPress={() => router.push("/onboarding/onboarding1")}>
             <Text style={{ color: primaryColor, fontSize: 24, fontWeight: "bold" }}>Masuk</Text>
           </TouchableOpacity>
           <View style={{ width: "100%", marginVertical: 26 }}>

@@ -1,9 +1,9 @@
 import { useRouter } from "expo-router";
 import React from "react";
-import { Dimensions, Image, StyleSheet, View } from "react-native";
+import { Image, Platform, StyleSheet, View } from "react-native";
 import BackButton from "../../components/ui/BackButton";
 
-const { width, height } = Dimensions.get("window");
+// const { width, height } = Dimensions.get("window");
 
 export default function MenulisPage() {
   const router = useRouter();
@@ -24,15 +24,17 @@ const styles = StyleSheet.create({
   },
   fullBg: {
     position: "absolute",
-    width: width,
-    height: height,
-    top: -8,
+    width: "100%",
+    height: "100%",
+    top: 0,
     left: 0,
+    right: 0,
+    bottom: 0,
   },
   backBtnWrapper: {
     position: "absolute",
-    top: 25,
-    left: 12,
+    top: Platform.OS === "web" ? 0 : 34,
+    left: Platform.OS === "web" ? 16 : 12,
     zIndex: 10,
   },
 });

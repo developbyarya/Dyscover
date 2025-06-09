@@ -45,8 +45,8 @@ export default function ScreeningAdvance() {
     <View style={styles.container}>
       {/* Header: Back Button & Progress Bar */}
       <View style={styles.headerRow}>
-        <BackButton onPress={() => router.replace("/home/screening-instruction")} />
-        <ProgressBar progress={progress} style={styles.progressBar} variant="gradient" />
+        <BackButton onPress={() => router.replace("/home/half-way")} />
+        <ProgressBar progress={0.5} style={styles.progressBar} variant="gradient" />
       </View>
 
       {/* Word Card */}
@@ -69,12 +69,7 @@ export default function ScreeningAdvance() {
 
       {/* Button Lanjut */}
       {showNext && (
-        <Button 
-          onPress={() => router.replace("/home/screening-report")} 
-          backgroundColor="#8800cc" 
-          borderRadius={16} 
-          style={{ position: "absolute", bottom: 40, left: 24, right: 24 }}
-        >
+        <Button onPress={() => router.replace("/home/screening-report")} backgroundColor="#8800cc" borderRadius={16} style={{ position: "absolute", bottom: 40 }}>
           Selesai
         </Button>
       )}

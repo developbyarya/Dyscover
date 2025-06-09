@@ -11,7 +11,7 @@ export default function Onboarding1() {
     <View style={styles.container}>
       <View style={styles.topRow}>
         <ProgressBar progress={0.25} style={{ marginRight: 16 }} />
-        <TouchableOpacity onPress={() => router.replace("/welcome")}>
+        <TouchableOpacity onPress={() => router.replace("/home/page")}>
           <Text style={styles.skip}>Skip</Text>
         </TouchableOpacity>
       </View>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   illustration: {
     width: 331.53,
     height: 515,
-    marginTop: 50,
+    marginTop: 90,
     marginLeft: -140,
     zIndex: 1,
   },

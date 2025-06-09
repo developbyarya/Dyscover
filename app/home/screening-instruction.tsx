@@ -3,7 +3,7 @@ import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import { useRouter } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function ScreeningInstruction() {
   const router = useRouter();
@@ -42,6 +42,7 @@ export default function ScreeningInstruction() {
       </View>
 
       {/* Mulai Button */}
+
       <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={() => router.replace("/home/screening")}>
         {/* <Text style={styles.buttonText}>Mulai</Text> */}
       </TouchableOpacity>
@@ -144,10 +145,7 @@ const styles = StyleSheet.create({
     height: 56,
     alignItems: "center",
     justifyContent: "center",
-    position: "absolute",
-    bottom: 32,
-    left: 24,
-    right: 24,
+    marginTop: 32,
   },
   buttonText: {
     color: "#fff",

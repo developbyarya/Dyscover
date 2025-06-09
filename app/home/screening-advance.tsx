@@ -1,3 +1,4 @@
+import { useScreening } from "@/components/context/ScreeningContext";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import MicButton from "@/components/ui/MicButton";
@@ -5,17 +6,40 @@ import ProgressBar from "@/components/ui/ProgressBar";
 import SpeakerButton from "@/components/ui/SpeakerButton";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
-export default function Screening() {
+export default function ScreeningAdvance() {
   const router = useRouter();
   const [showNext, setShowNext] = useState(false);
   const [showMic, setShowMic] = useState(true);
+  const { 
+    wordTest,
+    currentWordIndex,
+    setCurrentWordIndex,
+    isLoading
+  } = useScreening();
 
   const handleMicFinish = () => {
-    setShowNext(true);
-    setShowMic(false);
+    if (currentWordIndex < wordTest.length - 1) {
+      setCurrentWordIndex(currentWordIndex + 1);
+      setShowMic(true);
+      setShowNext(false);
+    } else {
+      setShowNext(true);
+      setShowMic(false);
+    }
   };
+
+  if (isLoading || wordTest.length === 0) {
+    return (
+      <View style={[styles.container, styles.centered]}>
+        <ActivityIndicator size="large" color="#8800cc" />
+      </View>
+    );
+  }
+
+  const currentWord = wordTest[currentWordIndex];
+  const progress = (currentWordIndex + 1) / wordTest.length;
 
   return (
     <View style={styles.container}>
@@ -27,7 +51,7 @@ export default function Screening() {
 
       {/* Word Card */}
       <View style={styles.wordCard}>
-        <Text style={styles.wordText}>Buku</Text>
+        <Text style={styles.wordText}>{currentWord}</Text>
         <SpeakerButton style={styles.speakerIcon} />
       </View>
 
@@ -35,7 +59,13 @@ export default function Screening() {
       {showMic && <Text style={styles.tapText}>Tap untuk memulai</Text>}
 
       {/* Microphone Button */}
-      {showMic && <MicButton onFinish={handleMicFinish} />}
+      {showMic && (
+        <MicButton 
+          onFinish={handleMicFinish} 
+          expectedWord={currentWord}
+          testType="word"
+        />
+      )}
 
       {/* Button Lanjut */}
       {showNext && (
@@ -54,6 +84,9 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 24,
     alignItems: "center",
+  },
+  centered: {
+    justifyContent: "center",
   },
   headerRow: {
     flexDirection: "row",

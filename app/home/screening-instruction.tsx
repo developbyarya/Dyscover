@@ -1,3 +1,4 @@
+import { requestMicrophonePermission } from "@/components/backend/askPermission";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import { useRouter } from "expo-router";
@@ -41,7 +42,20 @@ export default function ScreeningInstruction() {
       </View>
 
       {/* Mulai Button */}
-      <Button style={styles.button} onPress={() => router.replace("/home/screening")} backgroundColor="#FFD233" borderRadius={16}>
+
+      <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={() => router.replace("/home/screening")}>
+        {/* <Text style={styles.buttonText}>Mulai</Text> */}
+      </TouchableOpacity>
+      <Button onPress={() => {
+        requestMicrophonePermission().then((granted) => {
+          console.log("granted", granted);
+          if (granted) {
+            router.replace("/home/screening");
+          } else {
+            console.error("Permission not granted");
+          }
+        });
+      }} backgroundColor="#8800cc" borderRadius={16}>
         Mulai
       </Button>
     </View>

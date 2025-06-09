@@ -1,3 +1,4 @@
+import { useScreening } from "@/components/context/ScreeningContext";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -5,6 +6,15 @@ import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "rea
 
 export default function ScreeningResult() {
   const router = useRouter();
+  const { scores, getAccuracy, alphabetTest, wordTest } = useScreening();
+  const accuracy = Math.round(getAccuracy());
+  
+  // Filter out empty results and calculate statistics
+  const validScores = scores.filter(score => score.word.trim() !== '');
+  const correctAnswers = validScores.filter(score => score.isCorrect).length;
+  const totalExpected = alphabetTest.length + wordTest.length;
+  
+  const currentDate = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
 
   return (
     <View style={styles.container}>
@@ -14,24 +24,22 @@ export default function ScreeningResult() {
           <Ionicons name="arrow-back" size={24} color="#8300BA" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Hasil Screening</Text>
-        <Text style={styles.headerDate}>3 Juni 2025</Text>
+        <Text style={styles.headerDate}>{currentDate}</Text>
         <TouchableOpacity style={styles.shareButton}>
           <Image source={require("../../assets/Icons/share.png")} style={styles.shareIcon} />
         </TouchableOpacity>
         {/* Circular Progress */}
         <View style={styles.progressCircleContainer}>
           <View style={styles.progressCircleBg} />
-          <View style={styles.progressCircleFg} />
-          <Text style={styles.progressText}>80%</Text>
+          <View style={[styles.progressCircleFg, { transform: [{ rotate: `${accuracy * 3.6}deg` }] }]} />
+          <Text style={styles.progressText}>{accuracy}%</Text>
         </View>
         {/* Score & Time */}
         <View style={styles.scoreRow}>
           <View style={styles.scoreBox}>
-            {/* <Image source={require("../../assets/images/check.png")} style={styles.scoreIcon} /> */}
-            <Text style={styles.scoreText}>8/10 Benar</Text>
+            <Text style={styles.scoreText}>{correctAnswers}/{totalExpected} Benar</Text>
           </View>
           <View style={styles.scoreBox}>
-            {/* <Image source={require("../../assets/images/clock.png")} style={styles.scoreIcon} /> */}
             <Text style={styles.scoreText}>10 Menit</Text>
           </View>
         </View>
@@ -40,14 +48,25 @@ export default function ScreeningResult() {
         {/* Explanation Box */}
         <View style={styles.explanationBox}>
           <Text style={styles.explanationText}>
-            Seorang anak pada kelompok usia ini diharapkan dapat membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>90%</Text>. Indra membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>80%</Text>.
+            Seorang anak pada kelompok usia ini diharapkan dapat membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>90%</Text>. Indra membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>{accuracy}%</Text>.
           </Text>
         </View>
 
         {/* Risiko */}
         <Text style={styles.sectionTitle}>Tingkat Risiko</Text>
-        <View style={styles.riskBadge}>
-          <Text style={styles.riskText}>Rendah</Text>
+        <View style={[styles.riskBadge, { backgroundColor: accuracy >= 80 ? "#FFD233" : "#FF3B3B" }]}>
+          <Text style={styles.riskText}>{accuracy >= 80 ? "Rendah" : "Tinggi"}</Text>
+        </View>
+
+        {/* Detailed Results */}
+        <Text style={styles.sectionTitle}>Detail Hasil</Text>
+        <View style={styles.explanationBox}>
+          <Text style={styles.detailText}>
+            Tes Alfabet: {validScores.filter(s => s.type === 'alphabet' && s.isCorrect).length}/{alphabetTest.length} benar
+          </Text>
+          <Text style={styles.detailText}>
+            Tes Kata: {validScores.filter(s => s.type === 'word' && s.isCorrect).length}/{wordTest.length} benar
+          </Text>
         </View>
 
         {/* Langkah Selanjutnya */}
@@ -261,4 +280,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "PlusJakartaSans",
   },
+  detailText: {
+    color: "#8300BA",
+    fontSize: 16,
+    fontFamily: "PlusJakartaSans",
+    marginBottom: 8,
+  }
 });

@@ -1,3 +1,4 @@
+import { ScreeningProvider } from "@/components/context/ScreeningContext";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { Platform, StyleSheet } from "react-native";
@@ -37,6 +38,8 @@ export default function RootLayout() {
       : {};
 
   return (
+
+    <ScreeningProvider>
     <SafeAreaView style={[styles.container, webExtraStyle]} edges={["top", "bottom", "left", "right"]}>
       <Stack screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -53,7 +56,9 @@ export default function RootLayout() {
         <Stack.Screen name="home/screening" options={{ headerShown: false }} />
         <Stack.Screen name="home/screening-instruction" options={{ headerShown: false }} /> */}
       </Stack>
-    </SafeAreaView>
+      </SafeAreaView>
+
+    </ScreeningProvider>
   );
 }
 

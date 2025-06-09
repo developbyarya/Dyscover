@@ -63,6 +63,7 @@ export default function ScreeningAdvance() {
         <MicButton 
           onFinish={handleMicFinish} 
           expectedWord={currentWord}
+          testType="word"
         />
       )}
 

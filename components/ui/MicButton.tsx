@@ -79,6 +79,12 @@ export default function MicButton({ onPress, onFinish, style, expectedWord, test
       });
       stopRecording();
     }
+    // Reset state even if conditions weren't met
+    setAnimating(false);
+    hasFinished.current = false;
+    processingError.current = false;
+    fadeAnim.setValue(1);
+    setImage(initialImg);
   };
 
   const stopRecording = () => {
@@ -90,8 +96,11 @@ export default function MicButton({ onPress, onFinish, style, expectedWord, test
     fadeAnim.setValue(1);
     processingError.current = false;
     if (typeof onFinish === "function") {
-      hasFinished.current = true;
       onFinish();
+      // Only set hasFinished after onFinish callback
+      hasFinished.current = true;
+    } else {
+      hasFinished.current = false;
     }
   };
 
@@ -100,18 +109,23 @@ export default function MicButton({ onPress, onFinish, style, expectedWord, test
       stopRecording();
       return;
     }
-    console.log('Starting recording for word:', expectedWord);
+    
+    // Reset state before starting new recording
     hasFinished.current = false;
     processingError.current = false;
-    startRecognition();
     setAnimating(true);
     isAfter.current = false;
+    
+    console.log('Starting recording for word:', expectedWord);
+    startRecognition();
     if (onPress) onPress();
+    
     animateTo(beforeImg);
     intervalRef.current = setInterval(() => {
       isAfter.current = !isAfter.current;
       animateTo(isAfter.current ? afterImg : beforeImg);
     }, 500);
+    
     timeoutRef.current = setTimeout(() => {
       if (!hasFinished.current) {
         console.log('Recording timeout for word:', expectedWord);
@@ -120,8 +134,16 @@ export default function MicButton({ onPress, onFinish, style, expectedWord, test
     }, 10000);
   };
 
-  React.useEffect(() => {
-    return () => clearAllTimers();
+  useEffect(() => {
+    return () => {
+      // Ensure cleanup on unmount
+      clearAllTimers();
+      fadeAnim.setValue(1);
+      setImage(initialImg);
+      setAnimating(false);
+      hasFinished.current = false;
+      processingError.current = false;
+    };
   }, []);
 
   // Handle errors gracefully with debounce
@@ -135,6 +157,13 @@ export default function MicButton({ onPress, onFinish, style, expectedWord, test
         handleError();
       }, 1000);
     }
+    
+    // Cleanup on error
+    return () => {
+      if (errorTimeoutRef.current) {
+        clearTimeout(errorTimeoutRef.current);
+      }
+    };
   }, [error]);
 
   React.useEffect(() => {
@@ -145,8 +174,8 @@ export default function MicButton({ onPress, onFinish, style, expectedWord, test
       }
       
       // Compare case-insensitive and trim whitespace
-      const normalizedResult = result.toLowerCase().trim();
-      const normalizedExpected = expectedWord.toLowerCase().trim();
+      const normalizedResult = result.toLowerCase().trim().replace(/\s+/g, '');
+      const normalizedExpected = expectedWord.toLowerCase().trim().replace(/\s+/g, '');
       addScore({
         word: normalizedResult,
         expectedWord: normalizedExpected,
@@ -161,9 +190,10 @@ export default function MicButton({ onPress, onFinish, style, expectedWord, test
   // Reset state when expectedWord changes
   useEffect(() => {
     console.log('Expected word changed:', expectedWord);
+    // Ensure immediate reset of visual state
+    fadeAnim.setValue(1);
     setImage(initialImg);
     setAnimating(false);
-    fadeAnim.setValue(1);
     hasFinished.current = false;
     processingError.current = false;
     clearAllTimers();
@@ -174,7 +204,7 @@ export default function MicButton({ onPress, onFinish, style, expectedWord, test
       style={[styles.micButton, style]} 
       onPress={handlePress} 
       activeOpacity={0.8}
-      disabled={!expectedWord || (!animating && hasFinished.current)} 
+      disabled={!expectedWord || (hasFinished.current && !animating)} 
     >
       <Animated.Image source={image} style={[styles.image, { opacity: fadeAnim }]} resizeMode="contain" />
     </TouchableOpacity>

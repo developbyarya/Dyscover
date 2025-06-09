@@ -7,6 +7,7 @@ export async function fetchScreeningTest(): Promise<ScreeningTest> {
   try {
     const response = await fetch('https://dyslexia-backend.vercel.app/api/screening');
     const data = await response.json();
+    // console.log(data);
     return data;
   } catch (error) {
     console.error('Error fetching screening test:', error);

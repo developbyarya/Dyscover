@@ -85,6 +85,8 @@ export function ScreeningProvider({ children }: { children: React.ReactNode }) {
       const data = await fetchScreeningTest();
       setAlphabetTest(data.alphabet_test);
       setWordTest(data.word_test);
+      // console.log(data.alphabet_test);
+      // console.log(data.word_test);
     } catch (error) {
       console.error('Error loading test data:', error);
     } finally {

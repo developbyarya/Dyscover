@@ -22,14 +22,14 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/Logo-Dyscover.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/Logo-Dyscover.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
@@ -38,19 +38,14 @@
       [
         "expo-font",
         {
-          "fonts": [
-            "./assets/fonts/Montserrat.ttf",
-            "./assets/fonts/Montserrat-Italic.ttf"
-          ]
+          "fonts": ["./assets/fonts/Montserrat.ttf", "./assets/fonts/Montserrat-Italic.ttf"]
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "extra": {
       "router": {},
       "eas": {

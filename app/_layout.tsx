@@ -1,6 +1,6 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function RootLayout() {
@@ -13,8 +13,31 @@ export default function RootLayout() {
     return null;
   }
 
+  // Web-only style
+  const webExtraStyle =
+    Platform.OS === "web"
+      ? {
+          maxWidth: 430,
+          width: "100%",
+          // @ts-ignore
+          marginLeft: "auto",
+          // @ts-ignore
+          marginRight: "auto",
+          // @ts-ignore
+          boxSizing: "border-box",
+          // @ts-ignore
+          minHeight: "100vh",
+          backgroundColor: "#fff",
+          borderWidth: 1,
+          borderColor: "#e0e0e0",
+          borderRadius: 16,
+          // @ts-ignore
+          boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+        }
+      : {};
+
   return (
-    <SafeAreaView style={styles.container} edges={["top", "bottom", "left", "right"]}>
+    <SafeAreaView style={[styles.container, webExtraStyle]} edges={["top", "bottom", "left", "right"]}>
       <Stack screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="auth/signin" options={{ headerShown: false }} />
@@ -37,6 +60,6 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    fontFamily: "Montserrat",
+    fontFamily: "PlusJakartaSans",
   },
 });

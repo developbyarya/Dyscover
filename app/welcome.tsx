@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#8300BA",
     justifyContent: "flex-end",
     alignItems: "center",
-    paddingBottom: 60,
+    paddingBottom: 40,
   },
   title: {
     color: "#fff",
@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 279,
     height: 80,
-    // marginTop: 10,
-    marginBottom: 380,
+    // marginTop: 30,
+    marginBottom: 350,
     alignSelf: "center",
   },
   brand: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginTop: -300,
     width: 180,
     height: 180,
-    marginBottom: 200,
+    marginBottom: 100,
     alignSelf: "center",
   },
 });

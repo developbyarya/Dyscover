@@ -1,7 +1,7 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-const SeparatorWithText = ({ text = 'Atau' }) => {
+const SeparatorWithText = ({ text = "Atau" }) => {
   return (
     <View style={styles.container}>
       <View style={styles.line} />
@@ -13,20 +13,20 @@ const SeparatorWithText = ({ text = 'Atau' }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    width: '100%',
-    alignItems: 'center',
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
     marginVertical: 16,
   },
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: '#8300ba', // Customize as needed
+    backgroundColor: "#8300ba", // Customize as needed
   },
   text: {
     marginHorizontal: 8,
-    color: '#8300ba',
-    fontWeight: 'bold',
+    color: "#8300ba",
+    fontWeight: "bold",
   },
 });
 

@@ -39,7 +39,7 @@ export default function Screening() {
 
       {/* Button Lanjut */}
       {showNext && (
-        <Button onPress={() => router.replace("/home/half-way")} backgroundColor="#8800cc" borderRadius={16} style={{ position: "absolute", bottom: 40, left: 24, right: 24 }}>
+        <Button onPress={() => router.replace("/home/half-way")} backgroundColor="#8800cc" borderRadius={16} style={{ position: "absolute", bottom: 40}}>
           Lanjut
         </Button>
       )}

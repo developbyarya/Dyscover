@@ -3,14 +3,16 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 type Props = {
   onPress: () => void;
+  isYellow?: boolean;
 };
 
-const arrowImage = require("../../assets/images/Back-Button.png");
+const arrowImage = require("../../assets/Icons/Back-Button.png");
+const yellowArrowImage = require("../../assets/Icons/yellow-back-button.png");
 
-export default function BackButton({ onPress }: Props) {
+export default function BackButton({ onPress, isYellow = false }: Props) {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Image source={arrowImage} style={styles.arrowImage} resizeMode="contain" />
+      <Image source={isYellow ? yellowArrowImage : arrowImage} style={styles.arrowImage} resizeMode="contain" />
     </TouchableOpacity>
   );
 }

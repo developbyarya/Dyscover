@@ -1,7 +1,7 @@
 import Button from "@/components/ui/Button";
 import { useRouter } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function WelcomeScreen() {
   const router = useRouter();
@@ -11,6 +11,7 @@ export default function WelcomeScreen() {
       <Text style={styles.title}>
         Selamat Datang{"\n"}di <Text style={styles.brand}>Dyscover</Text>
       </Text>
+      <Image source={require("../assets/images/Logo-Dyscover.png")} style={styles.logo} resizeMode="contain" />
       {/* <TouchableOpacity
         style={styles.button}
         activeOpacity={0.8}
@@ -29,7 +30,7 @@ export default function WelcomeScreen() {
           style={styles.loginLink}
           onPress={() => {
             // Ganti '/login' dengan halaman login Anda
-            router.replace("/home/page");
+            router.replace("/auth/signin");
           }}>
           Masuk
         </Text>
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#8300BA",
     justifyContent: "flex-end",
     alignItems: "center",
-    paddingBottom: 60,
+    paddingBottom: 40,
   },
   title: {
     color: "#fff",
@@ -56,8 +57,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 279,
     height: 80,
-    // marginTop: 10,
-    marginBottom: 380,
+    // marginTop: 30,
+    marginBottom: 350,
     alignSelf: "center",
   },
   brand: {
@@ -96,5 +97,13 @@ const styles = StyleSheet.create({
     color: "#FFD233",
     fontFamily: "PlusJakartaSans",
     fontWeight: "700",
+    textDecorationLine: "underline",
+  },
+  logo: {
+    marginTop: -300,
+    width: 180,
+    height: 180,
+    marginBottom: 100,
+    alignSelf: "center",
   },
 });

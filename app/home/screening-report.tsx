@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -9,8 +10,8 @@ export default function ScreeningResult() {
     <View style={styles.container}>
       {/* Header Gradient */}
       <View style={styles.headerGradient}>
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-          <Image source={require("../../assets/Icons/back.png")} style={styles.backIcon} />
+        <TouchableOpacity style={styles.navButton} onPress={() => router.push("/home/screening-advance")}>
+          <Ionicons name="arrow-back" size={24} color="#8300BA" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Hasil Screening</Text>
         <Text style={styles.headerDate}>3 Juni 2025</Text>
@@ -53,15 +54,15 @@ export default function ScreeningResult() {
         <Text style={styles.sectionTitle}>Langkah Selanjutnya</Text>
         <View style={styles.nextSteps}>
           <View style={styles.stepRow}>
-            {/* <Image source={require("../../assets/images/gamepad.png")} style={styles.stepIcon} /> */}
+            <Image source={require("../../assets/Icons/game-tips.png")} style={styles.stepIcon} />
             <Text style={styles.stepText}>Gunakan fitur gamifikasi untuk melatih kesadaran fonemik dan pengenalan huruf secara rutin.</Text>
           </View>
           <View style={styles.stepRow}>
-            {/* <Image source={require("../../assets/images/heart.png")} style={styles.stepIcon} /> */}
+            <Image source={require("../../assets/Icons/heart-rate.png")} style={styles.stepIcon} />
             <Text style={styles.stepText}>Lakukan skrining ulang setelah 4 minggu latihan untuk memantau perkembangan.</Text>
           </View>
           <View style={styles.stepRow}>
-            {/* <Image source={require("../../assets/images/clipboard.png")} style={styles.stepIcon} /> */}
+            <Image source={require("../../assets/Icons/riwayat-menu.png")} style={styles.stepIcon} />
             <Text style={styles.stepText}>Pertimbangkan untuk berkonsultasi dengan spesialis atau psikolog anak untuk evaluasi lebih mendalam.</Text>
           </View>
         </View>
@@ -85,22 +86,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "relative",
   },
-  backButton: {
-    position: "absolute",
-    top: 48,
-    left: 24,
-    width: 44,
-    height: 44,
+  navButton: {
+    marginLeft: -230,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     backgroundColor: "#fff",
-    borderRadius: 22,
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 10,
+    marginHorizontal: 8,
   },
   backIcon: {
     width: 10,
     height: 17.14,
-    tintColor: "#A259FF",
+    tintColor: "#8300BA",
   },
   shareButton: {
     position: "absolute",
@@ -117,7 +116,7 @@ const styles = StyleSheet.create({
   shareIcon: {
     width: 24,
     height: 24,
-    tintColor: "#A259FF",
+    tintColor: "#8300BA",
   },
   headerTitle: {
     color: "#fff",
@@ -193,7 +192,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     marginRight: 6,
-    tintColor: "#A259FF",
+    tintColor: "#8300BA",
   },
   scoreText: {
     color: "#222",
@@ -254,7 +253,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     marginRight: 12,
-    tintColor: "#A259FF",
+    tintColor: "#8300BA",
   },
   stepText: {
     flex: 1,

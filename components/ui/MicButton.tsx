@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Animated, Easing, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
 
-const initialImg = require("../../assets/images/Record-Button.png");
+const initialImg = require("../../assets/Icons/Record-Button.png");
 const beforeImg = require("../../assets/images/record-before.png");
 const afterImg = require("../../assets/images/record-after.png");
 

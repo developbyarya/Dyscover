@@ -3,7 +3,7 @@ import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import { useRouter } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function ScreeningInstruction() {
   const router = useRouter();
@@ -43,9 +43,6 @@ export default function ScreeningInstruction() {
 
       {/* Mulai Button */}
 
-      <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={() => router.replace("/home/screening")}>
-        {/* <Text style={styles.buttonText}>Mulai</Text> */}
-      </TouchableOpacity>
       <Button onPress={() => {
         requestMicrophonePermission().then((granted) => {
           console.log("granted", granted);

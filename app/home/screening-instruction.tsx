@@ -1,12 +1,14 @@
 import { requestMicrophonePermission } from "@/components/backend/askPermission";
+import { useTimer } from "@/components/context/TimerContext";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import { useRouter } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function ScreeningInstruction() {
   const router = useRouter();
+  const { setStartTime } = useTimer();
 
   return (
     <View style={styles.container}>
@@ -37,22 +39,31 @@ export default function ScreeningInstruction() {
         <View style={styles.instructionRow}>
           <Text style={styles.instructionNumber}>3.</Text>
 
-          <Text style={styles.instructionText}>Rekam hanya pelafalan pertama. Anda bisa menjawab “Saya tidak tahu” atau tidak merespons dalam 10 detik akan dicatat sebagai kesalahan.</Text>
+          <Text style={styles.instructionText}>{`Rekam hanya pelafalan pertama. Anda bisa menjawab "Saya tidak tahu" atau tidak merespons dalam 10 detik akan dicatat sebagai kesalahan.`}</Text>
         </View>
       </View>
 
       {/* Mulai Button */}
 
-      <Button onPress={() => {
-        requestMicrophonePermission().then((granted) => {
-          console.log("granted", granted);
-          if (granted) {
-            router.replace("/home/screening");
-          } else {
-            console.error("Permission not granted");
-          }
-        });
-      }} backgroundColor="#8800cc" borderRadius={16}>
+      <Button
+        onPress={() => {
+          const startTime = Date.now();
+          console.log("Timer started at:", new Date(startTime).toLocaleTimeString());
+          setStartTime(startTime);
+
+          requestMicrophonePermission().then((granted) => {
+            const elapsedTime = Date.now() - startTime;
+            console.log("Time elapsed:", elapsedTime, "ms");
+            console.log("granted", granted);
+            if (granted) {
+              router.replace("/home/screening");
+            } else {
+              console.error("Permission not granted");
+            }
+          });
+        }}
+        backgroundColor="#8800cc"
+        borderRadius={16}>
         Mulai
       </Button>
     </View>

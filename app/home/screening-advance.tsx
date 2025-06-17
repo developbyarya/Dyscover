@@ -1,4 +1,5 @@
 import { useScreening } from "@/components/context/ScreeningContext";
+import { useTimer } from "@/components/context/TimerContext";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import MicButton from "@/components/ui/MicButton";
@@ -12,12 +13,8 @@ export default function ScreeningAdvance() {
   const router = useRouter();
   const [showNext, setShowNext] = useState(false);
   const [showMic, setShowMic] = useState(true);
-  const { 
-    wordTest,
-    currentWordIndex,
-    setCurrentWordIndex,
-    isLoading
-  } = useScreening();
+  const { setEndTime } = useTimer();
+  const { wordTest, currentWordIndex, setCurrentWordIndex, isLoading } = useScreening();
 
   const handleMicFinish = () => {
     if (currentWordIndex < wordTest.length - 1) {
@@ -27,6 +24,8 @@ export default function ScreeningAdvance() {
     } else {
       setShowNext(true);
       setShowMic(false);
+      setEndTime(Date.now());
+      console.log("Test completed at:", new Date().toLocaleTimeString());
     }
   };
 
@@ -46,7 +45,7 @@ export default function ScreeningAdvance() {
       {/* Header: Back Button & Progress Bar */}
       <View style={styles.headerRow}>
         <BackButton onPress={() => router.replace("/home/half-way")} />
-        <ProgressBar progress={0.5} style={styles.progressBar} variant="gradient" />
+        <ProgressBar progress={progress} style={styles.progressBar} variant="gradient" />
       </View>
 
       {/* Word Card */}
@@ -59,13 +58,7 @@ export default function ScreeningAdvance() {
       {showMic && <Text style={styles.tapText}>Tap untuk memulai</Text>}
 
       {/* Microphone Button */}
-      {showMic && (
-        <MicButton 
-          onFinish={handleMicFinish} 
-          expectedWord={currentWord}
-          testType="word"
-        />
-      )}
+      {showMic && <MicButton onFinish={handleMicFinish} expectedWord={currentWord} testType="word" />}
 
       {/* Button Lanjut */}
       {showNext && (

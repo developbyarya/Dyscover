@@ -1,4 +1,5 @@
 import { useScreening } from "@/components/context/ScreeningContext";
+import { useTimer } from "@/components/context/TimerContext";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -8,19 +9,33 @@ export default function ScreeningResult() {
   const router = useRouter();
   const { scores, getAccuracy, alphabetTest, wordTest } = useScreening();
   const accuracy = Math.round(getAccuracy());
-  
+  const { startTime, endTime } = useTimer();
+
   // Filter out empty results and calculate statistics
-  const validScores = scores.filter(score => score.word.trim() !== '');
-  const correctAnswers = validScores.filter(score => score.isCorrect).length;
+  const validScores = scores.filter((score) => score.word.trim() !== "");
+  const correctAnswers = validScores.filter((score) => score.isCorrect).length;
   const totalExpected = alphabetTest.length + wordTest.length;
-  
-  const currentDate = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const currentDate = new Date().toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
+
+  const formatDuration = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    if (minutes > 0) {
+      return `${minutes} menit${remainingSeconds > 0 ? ` ${remainingSeconds} detik` : ""}`;
+    } else {
+      return `${remainingSeconds} detik`;
+    }
+  };
+
+  const duration = startTime && endTime ? Math.round((endTime - startTime) / 1000) : 0;
 
   return (
     <View style={styles.container}>
       {/* Header Gradient */}
       <View style={styles.headerGradient}>
-        <TouchableOpacity style={styles.navButton} onPress={() => router.push("/home/screening-advance")}>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.push("/home/screening-instruction")}>
           <Ionicons name="arrow-back" size={24} color="#8300BA" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Hasil Screening</Text>
@@ -37,10 +52,12 @@ export default function ScreeningResult() {
         {/* Score & Time */}
         <View style={styles.scoreRow}>
           <View style={styles.scoreBox}>
-            <Text style={styles.scoreText}>{correctAnswers}/{totalExpected} Benar</Text>
+            <Text style={styles.scoreText}>
+              {correctAnswers}/{totalExpected} Benar
+            </Text>
           </View>
           <View style={styles.scoreBox}>
-            <Text style={styles.scoreText}>10 Menit</Text>
+            <Text style={styles.scoreText}>{formatDuration(duration)}</Text>
           </View>
         </View>
       </View>
@@ -48,7 +65,8 @@ export default function ScreeningResult() {
         {/* Explanation Box */}
         <View style={styles.explanationBox}>
           <Text style={styles.explanationText}>
-            Seorang anak pada kelompok usia ini diharapkan dapat membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>90%</Text>. Indra membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>{accuracy}%</Text>.
+            Seorang anak pada kelompok usia ini diharapkan dapat membaca kata-kata dengan akurasi <Text style={{ fontWeight: "bold" }}>90%</Text>. Indra membaca kata-kata dengan akurasi{" "}
+            <Text style={{ fontWeight: "bold" }}>{accuracy}%</Text>.
           </Text>
         </View>
 
@@ -62,10 +80,10 @@ export default function ScreeningResult() {
         <Text style={styles.sectionTitle}>Detail Hasil</Text>
         <View style={styles.explanationBox}>
           <Text style={styles.detailText}>
-            Tes Alfabet: {validScores.filter(s => s.type === 'alphabet' && s.isCorrect).length}/{alphabetTest.length} benar
+            Tes Alfabet: {validScores.filter((s) => s.type === "alphabet" && s.isCorrect).length}/{alphabetTest.length} benar
           </Text>
           <Text style={styles.detailText}>
-            Tes Kata: {validScores.filter(s => s.type === 'word' && s.isCorrect).length}/{wordTest.length} benar
+            Tes Kata: {validScores.filter((s) => s.type === "word" && s.isCorrect).length}/{wordTest.length} benar
           </Text>
         </View>
 
@@ -285,5 +303,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "PlusJakartaSans",
     marginBottom: 8,
-  }
+  },
+  durationText: {
+    color: "#8300BA",
+    fontSize: 16,
+    fontFamily: "PlusJakartaSans",
+    marginTop: 8,
+    marginLeft: 24,
+  },
 });
